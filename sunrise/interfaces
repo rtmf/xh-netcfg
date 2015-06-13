@@ -1,0 +1,26 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+
+iface eth0 inet static
+  address 173.255.209.40/24
+  gateway 173.255.209.1
+
+iface eth0 inet6 static
+  address 2600:3c01::f03c:91ff:fe96:f34c/64
+  gateway fe80::1
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::1/64
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::d/64
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::ac1d/64
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::1337/64
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::0137:137f/64
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117:7fae:7175:2b16:4a55/80
+iface eth0 inet6 static
+  address 2600:3c01:e000:0117::666/64

@@ -1,0 +1,16 @@
+$ORIGIN .
+$TTL 300	; 5 minutes
+cccn.xh			IN SOA	ns.xh. ca.cccn.xh. (
+				2015060802 ; serial
+				1800       ; refresh (30 minutes)
+				300        ; retry (5 minutes)
+				300        ; expire (5 minutes)
+				300        ; minimum (5 minutes)
+				)
+			NS	ns.xh.
+			A	45.33.50.191
+$ORIGIN cccn.xh.
+bso			CNAME	sunrise
+ca			AAAA	2600:3c01:e000:117:7fae:7175:2a55:b02b
+horizon			A	173.255.211.89
+sunrise			A	173.255.209.40

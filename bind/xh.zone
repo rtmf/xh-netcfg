@@ -1,0 +1,24 @@
+$TTL 7200
+$ORIGIN xh.
+; xh.
+@ 	IN 	SOA 	ns 	nic (
+    2015060704; Serial
+    28800; Refresh
+    1800; Retry
+    604800; Expire 1week
+    86400; Minimum 
+    )
+
+@	 	IN 	NS 	ns	
+@		IN      AAAA    2600:3c01:e000:117:7fae::add4
+@		IN	A	45.33.50.191
+tsab IN CNAME xh.
+ca	IN	CNAME	tsab
+ns 		IN 	A   173.255.211.89
+ns 		IN 	AAAA 	2600:3c01:e000:0117:7fae::cccd
+nic 	IN 	AAAA 	2600:3c01:e000:0117:7fae::face
+radio	IN 	AAAA 	2600:3c01:e000:0117::0137:137f
+radio 	IN 	A 	173.255.209.40
+node	IN	AAAA	2600:3c01::f03c:91ff:fe18:9874
+blog	IN	AAAA	2600:3c01:e000:0117:7fae::1337
+int IN DNAME int.edge.xh.

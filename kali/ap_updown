@@ -1,0 +1,17 @@
+#!/bin/sh
+case $PLUTO_VERB in
+  up-client-v6)
+    mk_ap --config /root/nyghts.conf & disown
+    ;;
+  down-client-v6)
+    for s in 15 9
+    do
+      for m in mk_ap hostapd dnsmasq haveged
+      do
+        echo $m[$s]
+        pkill -$s $m
+      done
+      sleep .1
+    done
+    ;;
+esac

@@ -1,0 +1,18 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>	<hostname.domain.org>	<hostname>
+127.0.0.1	localhost.localdomain	localhost
+::1		localhost.localdomain	localhost
+
+45.33.50.191 edge.xh.tymestl.org
+
+74.207.252.217 fmt.lish
+#10.7.19.127	vpn.beautifulsunrise.org	vpn.bso		v.bso	v
+#173.255.209.40 x.bso bso
+#173.255.211.89 d.bso
+#173.255.211.89 e.bso
+#2600:3c01:e000:0117::666 d.bso
+#2600:3c01:e000:0117::0137:137f x.bso
+# End of file

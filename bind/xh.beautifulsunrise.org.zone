@@ -1,0 +1,20 @@
+$TTL 7200
+$ORIGIN xh.beautifulsunrise.org.
+; xh.beautifulsunrise.org.
+@ 	IN 	SOA 	ns 	nic (
+	2015052504; Serial
+	28800; Refresh
+	1800; Retry
+	604800; Expire 1week
+	86400; Minimum 
+)
+
+@	 	IN 	NS 	ns
+@		IN      AAAA    2600:3c01:e000:117:7fae::cccd
+@		IN	A	45.33.50.191
+ns		IN      AAAA    2600:3c01:e000:117:7fae::add4
+ns	IN	A	45.33.50.191
+nic	IN	A	45.33.50.191
+nic 	IN 	AAAA 	2600:3c01:e000:0117:7fae::face
+blog		IN	A	45.33.50.191
+blog		IN      AAAA    2600:3c01:e000:117:7fae::ac1d

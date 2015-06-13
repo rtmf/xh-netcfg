@@ -1,0 +1,8 @@
+#!/bin/sh
+ip link set up dummy0
+ip addr flush dev dummy0
+ip route flush dev dummy0
+sysctl -w net.ipv4.conf.dummy0.forwarding=1
+sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv4.conf.dummy0.proxy_arp=1
+iptables -t nat -A POSTROUTING -o dummy0 -j MASQUERADE

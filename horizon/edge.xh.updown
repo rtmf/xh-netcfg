@@ -1,0 +1,44 @@
+#!/bin/sh
+{ 
+ttl=300
+zone="edge.xh"
+typ=NONE
+set | grep PLUTO
+echo $PLUTO_VERB @ $PLUTO_PEER_ID := $PLUTO_PEER_CLIENT
+case ${PLUTO_VERB} in
+  *client*)
+    case ${PLUTO_VERB} in
+      up-client*)
+        mode=add
+        ;;
+      down-client*)
+        mode=delete
+        ;;
+    esac
+    case ${PLUTO_PEER_CLIENT} in
+      */128)
+        typ=AAAA
+        dom=${PLUTO_PEER_ID}
+        addr=${PLUTO_PEER_CLIENT%/128}
+        ;;
+      */32)
+        typ=A
+        dom=${PLUTO_PEER_ID}.int
+        addr=${PLUTO_PEER_CLIENT%/32}
+        ;;
+    esac
+    if [ "$typ" != "NONE" ]
+    then
+      class=IN
+			nsupdate -l -d -D -L 9 <<---NSUP--
+			zone ${zone}.
+			update ${mode} ${dom}. ${ttl} ${class} ${typ} ${addr}
+			show
+			send
+			answer
+			--NSUP--
+    fi
+    pgrep rndc || rndc sync -clean
+    ;;
+esac 
+} &>> /tmp/updown/log

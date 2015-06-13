@@ -1,0 +1,49 @@
+#!/bin/bash
+#format for the conf file is:
+# lines beginning with # are ignored
+# lines beginning with @ set prefix
+# lines beginning with ^ extend prefix
+# other lines represent addresses
+ipsec stop
+ip -6 addr flush dev eth0
+ip -6 route flush dev eth0
+ip -6 neigh flush dev eth0
+sleep 1
+sysctl -p /etc/sysctl-eth0.conf
+sleep 1
+PREF=""
+CIDR=0
+shopt -s extglob
+while read line
+do
+  case $line in
+    [#]*)
+      #skip comments and blanks
+      ;;
+    @*)
+      PREF=${line:1}
+      ;;&
+    ^*)
+      PREF=${PREF}${line:1}
+      ;;&
+    [@^]*)
+      QSEP=${PREF//[!:]/}
+      CIDR=$(( 16 + ( ${#QSEP} * 16 ) ))
+      [ $CIDR -lt 112 ] && PREF=${PREF}:
+      [ $CIDR -gt 112 ] && exit 127
+      ;;
+    *)
+      ip -6 addr add $PREF:$line/$CIDR dev eth0
+      ;;
+  esac
+done 1>&2 </etc/localnet6-eth0.conf
+iptables -t nat -F
+iptables -t nat -A POSTROUTING -s 10.34.0.0/16 -o eth0 -m policy --dir out --pol ipsec -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.34.0.0/16 -o eth0 -j MASQUERADE
+iptables -I INPUT  -m policy --dir in --pol ipsec --proto esp -j ACCEPT
+iptables -I FORWARD  -m policy --dir in --pol ipsec --proto esp -j ACCEPT
+iptables -I FORWARD  -m policy --dir out --pol ipsec --proto esp -j ACCEPT
+iptables -I OUTPUT   -m policy --dir out --pol ipsec --proto esp -j ACCEPT
+ipsec start
+ipsec up bso-link
+exit 0

@@ -1,0 +1,28 @@
+#!/bin/sh 
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+sysctl -p /etc/sysctl-eth0.conf
+ifdown --force --ignore-errors --no-mappings --no-scripts eth0
+ip -6 addr flush dev eth0
+ip -6 route flush dev eth0
+ip -6 neigh flush dev eth0
+ifup --force --ignore-errors --no-mappings --no-scripts eth0
+iptables -t nat -F POSTROUTING
+ip6tables -t nat -F POSTROUTING
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+hostname beautifulsunrise.org
+domainname bso
+/etc/init.d/dnsmasq restart
+/usr/sbin/ipsec restart
+exit 0
