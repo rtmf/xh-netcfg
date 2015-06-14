@@ -1,5 +1,5 @@
 #!/bin/sh
-{ 
+( 
 ttl=300
 zone="edge.xh"
 typ=NONE
@@ -20,6 +20,7 @@ case ${PLUTO_VERB} in
         typ=AAAA
         dom=${PLUTO_PEER_ID}
         addr=${PLUTO_PEER_CLIENT%/128}
+        ip -6 neigh add proxy ${addr}
         ;;
       */32)
         typ=A
@@ -41,4 +42,4 @@ case ${PLUTO_VERB} in
     pgrep rndc || rndc sync -clean
     ;;
 esac 
-} &>> /tmp/updown/log
+) &>> /tmp/updown/log

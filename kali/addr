@@ -4,15 +4,21 @@
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
-5: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
-    link/ether de:a0:b2:2e:ff:d9 brd ff:ff:ff:ff:ff:ff
-    inet 10.34.71.75/32 scope global dummy0
+2: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default 
+    link/ether 3e:40:3f:48:e9:6f brd ff:ff:ff:ff:ff:ff
+4: intwifi.wl0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether c4:17:fe:c7:20:a0 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.169/24 brd 192.168.0.255 scope global intwifi.wl0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c617:feff:fec7:20a0/64 scope link 
+       valid_lft forever preferred_lft forever
+5: dolly: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
+    link/ether 6a:30:65:22:b0:33 brd ff:ff:ff:ff:ff:ff
+    inet 10.34.71.75/32 scope global dolly
        valid_lft forever preferred_lft forever
     inet6 2600:3c01:e000:117:7fae:137:137f:ac1d/128 scope global deprecated 
        valid_lft forever preferred_lft 0sec
-9: usb0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
-    link/ether 02:04:67:3d:65:32 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.42.127/24 brd 192.168.42.255 scope global usb0
+    inet6 fdd0:1057:da7a:7175::7175/64 scope global 
        valid_lft forever preferred_lft forever
-    inet6 fe80::4:67ff:fe3d:6532/64 scope link 
+    inet6 fe80::6830:65ff:fe22:b033/64 scope link 
        valid_lft forever preferred_lft forever

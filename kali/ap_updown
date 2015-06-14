@@ -1,4 +1,10 @@
 #!/bin/sh
+if [[ $PLUTO_VERB == up-client-v6 ]]
+then
+  echo ip -6 neigh add proxy ${PLUTO_PEER_CLIENT} dev ${PLUTO_INTERFACE}
+  ip -6 neigh add proxy ${PLUTO_PEER_CLIENT} dev ${PLUTO_INTERFACE}
+fi
+exit 0
 case $PLUTO_VERB in
   up-client-v6)
     ( mk_ap --daemon --config /root/nyghts.conf & disown ) &> /dev/null

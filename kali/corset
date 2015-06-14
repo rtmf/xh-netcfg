@@ -1,0 +1,7 @@
+Description="Bond wlp7s0 (wl wifi), enp0s29f7u3 (usb phone)"
+Interface=corset0
+Connection=bond
+BindsToInterfaces=(wlp7s0 enp0s29f7u3)
+IP=static
+Address="10.0.0.1/8"
+Mode=balance-rr

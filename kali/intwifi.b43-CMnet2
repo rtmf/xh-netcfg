@@ -1,0 +1,9 @@
+Description='b43 cmnet2'
+Interface=intwifi.b43
+Connection=wireless
+ESSID='CMnet2'
+Address='192.168.0.169/24'
+Gateway='192.168.0.1'
+IP=static
+Key='vegas1234'
+Security=wpa

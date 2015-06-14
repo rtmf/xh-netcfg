@@ -18,6 +18,14 @@
        valid_lft forever preferred_lft forever
     inet6 2600:3c01:e000:117:7fae:7175:2a55:b02b/128 scope global deprecated 
        valid_lft forever preferred_lft 0sec
+    inet6 fdd0:1057:da7a:7175:def9:2b1e:5b05:d011/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fdd0:1057:da7a:7175:4a9e:7e49:a1f9:75ee/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fdd0:1057:da7a:7175:2a55:4ced:2bea:babe/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fdd0:1057:da7a:c045:e7ed:d011:7175:2a55/48 scope global 
+       valid_lft forever preferred_lft forever
     inet6 2600:3c01:e000:117:7fae:137:137f:faed/112 scope global 
        valid_lft forever preferred_lft forever
     inet6 2600:3c01:e000:117:7fae::1337/80 scope global 

@@ -16,26 +16,33 @@ CIDR=0
 shopt -s extglob
 while read line
 do
-  case $line in
-    [#]*)
+  case ${line:0:1} in
+    "#")
       #skip comments and blanks
+      continue
       ;;
-    @*)
+    "<")
       PREF=${line:1}
-      ;;&
-    ^*)
-      PREF=${PREF}${line:1}
-      ;;&
-    [@^]*)
-      QSEP=${PREF//[!:]/}
-      CIDR=$(( 16 + ( ${#QSEP} * 16 ) ))
-      [ $CIDR -lt 112 ] && PREF=${PREF}:
-      [ $CIDR -gt 112 ] && exit 127
       ;;
-    *)
-      ip -6 addr add $PREF:$line/$CIDR dev eth0
+    "^")
+      PREF=${PREF:0:( 1 - ${#line} )}${line:1} 
+      ;;
+    ">")
+      PREF=${PREF}${line:1}
+      ;;
+   	*)
+      QSEP=${PREF//[!:]/}${line//[!:]}
+      ADDL=$(( 16 + ( ${#QSEP} * 16 ) ))
+      INF=":"
+      [ $ADDL -gt 112 ] && INF=""
+      ip -6 addr add $PREF$INF$line/$CIDR dev eth0
+      continue
       ;;
   esac
+  QSEP=${PREF//[!:]/}
+  CIDR=$(( 16 + ( ${#QSEP} * 16 ) ))
+  [ $CIDR -lt 112 ] && PREF=${PREF}:
+  [ $CIDR -gt 112 ] && exit 127
 done 1>&2 </etc/localnet6-eth0.conf
 iptables -t nat -F
 iptables -t nat -A POSTROUTING -s 10.34.0.0/16 -o eth0 -m policy --dir out --pol ipsec -j ACCEPT
