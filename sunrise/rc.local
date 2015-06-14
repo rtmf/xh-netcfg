@@ -23,6 +23,5 @@ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 hostname beautifulsunrise.org
 domainname bso
-/etc/init.d/dnsmasq restart
 /usr/sbin/ipsec restart
 exit 0
