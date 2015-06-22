@@ -1,2 +1,5 @@
-default via 192.168.0.1 dev intwifi.wl0 
-192.168.0.0/24 dev intwifi.wl0  proto kernel  scope link  src 192.168.0.169 
+default via 10.57.10.57 dev qlc  src 10.57.71.75 
+10.57.0.0/16 dev qlc  proto kernel  scope link  src 10.57.71.75 
+45.33.50.191 via 192.168.42.129 dev krystaltether 
+192.168.12.0/24 dev kaliwififree  proto kernel  scope link  src 192.168.12.1 
+192.168.42.0/24 dev krystaltether  proto kernel  scope link  src 192.168.42.127 

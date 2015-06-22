@@ -25,7 +25,7 @@ do
       PREF=${line:1}
       ;;
     "^")
-      PREF=${PREF:0:( 1 - ${#line} )}${line:1} 
+      PREF=${PREF:0:( 0 - ${#line} )}${line:1} 
       ;;
     ">")
       PREF=${PREF}${line:1}
@@ -45,8 +45,8 @@ do
   [ $CIDR -gt 112 ] && exit 127
 done 1>&2 </etc/localnet6-eth0.conf
 iptables -t nat -F
-iptables -t nat -A POSTROUTING -s 10.34.0.0/16 -o eth0 -m policy --dir out --pol ipsec -j ACCEPT
-iptables -t nat -A POSTROUTING -s 10.34.0.0/16 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.57.0.0/16 -o eth0 -m policy --dir out --pol ipsec -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.57.0.0/16 -o eth0 -j MASQUERADE
 iptables -I INPUT  -m policy --dir in --pol ipsec --proto esp -j ACCEPT
 iptables -I FORWARD  -m policy --dir in --pol ipsec --proto esp -j ACCEPT
 iptables -I FORWARD  -m policy --dir out --pol ipsec --proto esp -j ACCEPT

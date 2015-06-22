@@ -1,9 +1,0 @@
-Address=('10.69.71.75/16')
-Address6=('fdd0:1057:da7a:7175::7175/64')
-Connection=dummy
-Description='dolly virtual me for this host'
-IP=no
-IP6=stateless
-Interface=dolly
-ForceConnect='Yes'
-#NETCTL_DEBUG='Yes'

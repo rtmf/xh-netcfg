@@ -1,0 +1,11 @@
+Description='internal wifi - bcmwl - CMnet2'
+Interface='kaliwifiblob'
+Connection=wireless
+ESSID='CMnet2'
+Address='192.168.0.169/24'
+Routes=('45.33.50.191/32 via 192.168.0.1')
+IP=static
+Key='vegas1234'
+Security=wpa
+ExcludeAuto=no
+Priority=7
