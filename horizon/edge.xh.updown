@@ -20,24 +20,27 @@ case ${PLUTO_VERB} in
         typ=AAAA
         dom=${PLUTO_PEER_ID}
         addr=${PLUTO_PEER_CLIENT%/128}
-        ip -6 neigh add proxy ${addr}
+        rev=$(sipcalc -r $addr | grep arpa | tail -n 1)
         ;;
       */32)
         typ=A
-        dom=${PLUTO_PEER_ID}.int
+        dom=${PLUTO_PEER_ID%.edge.xh*}.int.edge.xh
         addr=${PLUTO_PEER_CLIENT%/32}
+        rev=$(echo $addr | awk -F . '{print $4"."$3"."$2"."$1".in-addr.arpa"}')
         ;;
     esac
     if [ "$typ" != "NONE" ]
     then
       class=IN
+      echo REVERSE_DOMAIN:$rev
 			nsupdate -l -d -D -L 9 <<---NSUP--
-			zone ${zone}.
-			update ${mode} ${dom}. ${ttl} ${class} ${typ} ${addr}
-			show
-			send
-			answer
-			--NSUP--
+update ${mode} ${dom}. ${ttl} ${class} ${typ} ${addr}
+send
+update ${mode} ${rev} ${ttl} PTR ${dom}.
+show
+send
+answer
+--NSUP--
     fi
     pgrep rndc || rndc sync -clean
     ;;
