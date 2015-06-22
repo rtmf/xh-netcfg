@@ -1,0 +1,15 @@
+$ORIGIN .
+$TTL 300	; 5 minutes
+57.10.in-addr.arpa	IN SOA	ns.xh. ca.edge.xh. (
+				2015062075 ; serial
+				1800       ; refresh (30 minutes)
+				300        ; retry (5 minutes)
+				300        ; expire (5 minutes)
+				300        ; minimum (5 minutes)
+				)
+			NS	ns.xh.
+$ORIGIN 57.10.in-addr.arpa.
+57.10			PTR	link.int.edge.xh.
+75.71			PTR	kali.int.edge.xh.
+83.84                   PTR     bso.int.edge.xh.
+0.0       PTR horizon.net4.

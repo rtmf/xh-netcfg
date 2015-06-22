@@ -1,0 +1,16 @@
+$ORIGIN .
+$TTL 300	; 5 minutes
+7.1.1.0.0.0.0.e.1.0.c.3.0.0.6.2.ip6.arpa IN SOA	ns.xh. ca.edge.xh. (
+				2015062090 ; serial
+				1800       ; refresh (30 minutes)
+				300        ; retry (5 minutes)
+				300        ; expire (5 minutes)
+				300        ; minimum (5 minutes)
+				)
+			NS	ns.xh.
+$ORIGIN f.7.3.1.7.3.1.0.e.a.f.7.7.1.1.0.0.0.0.e.1.0.c.3.0.0.6.2.ip6.arpa.
+d.1.c.a			PTR	kali.edge.xh.
+d.e.a.f			PTR	link.edge.xh.
+$ORIGIN 2.5.7.1.7.e.a.f.7.7.1.1.0.0.0.0.e.1.0.c.3.0.0.6.2.ip6.arpa.
+b.2.0.b.5.5.a		PTR	ca.edge.xh.
+5.5.a.4.6.1.b		PTR	bso.edge.xh.

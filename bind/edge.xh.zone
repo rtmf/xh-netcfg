@@ -1,7 +1,7 @@
 $ORIGIN .
 $TTL 300	; 5 minutes
 edge.xh			IN SOA	ns.xh. ca.edge.xh. (
-				2015061523 ; serial
+				2015062906 ; serial
 				1800       ; refresh (30 minutes)
 				300        ; retry (5 minutes)
 				300        ; expire (5 minutes)
@@ -13,9 +13,9 @@ $ORIGIN edge.xh.
 bso			AAAA	2600:3c01:e000:117:7fae:7175:2b16:4a55
 ca			AAAA	2600:3c01:e000:117:7fae:7175:2a55:b02b
 $ORIGIN int.edge.xh.
-bso			A	10.34.84.83
-edge			A	10.34.10.57
-kali			A	10.34.71.75
-tsab			A	10.34.136.66
+bso			A	10.57.84.83
+link			A	10.57.10.57
+kali			A	10.57.71.75
 $ORIGIN edge.xh.
 kali			AAAA	2600:3c01:e000:117:7fae:137:137f:ac1d
+link			AAAA	2600:3c01:e000:117:7fae:137:137f:faed

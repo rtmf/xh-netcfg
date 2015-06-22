@@ -14,3 +14,7 @@ bso			CNAME	sunrise
 ca			AAAA	2600:3c01:e000:117:7fae:7175:2a55:b02b
 horizon			A	173.255.211.89
 sunrise			A	173.255.209.40
+kali.on6	AAAA	fdd0:1057:da7a:7175::7175
+kali.on4	A	10.57.71.75
+kali.to6	AAAA	fdd0:1057:da7a:c045:e7ed:d011:7175:2a55
+kali.to4 A 10.57.10.57

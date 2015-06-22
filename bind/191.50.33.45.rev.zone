@@ -1,12 +1,12 @@
-$ORIGIN int.
+$ORIGIN .
 $TTL 300	; 5 minutes
-@			IN SOA	ns.xh. ca.edge.xh. (
-				2015061324 ; serial
+191.50.33.45.in-addr.arpa		IN SOA	ns.xh. ca.edge.xh. (
+				2015061752 ; serial
 				1800       ; refresh (30 minutes)
 				300        ; retry (5 minutes)
 				300        ; expire (5 minutes)
 				300        ; minimum (5 minutes)
 				)
 			NS	ns.xh.
-      A		10.57.10.57
-      DNAME int.edge.xh.
+$ORIGIN in-addr.arpa.
+191.50.33.45		PTR	edge.xh.
