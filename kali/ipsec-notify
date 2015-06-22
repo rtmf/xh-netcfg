@@ -1,0 +1,24 @@
+#!/bin/sh
+set | grep PLUTO >> /tmp/foo
+case "${PLUTO_VERB}" in                                                                                                                                               
+  up-client)
+    ip tunnel add qlc local ${PLUTO_ME} remote ${PLUTO_PEER} mode gre
+    ip link set qlc up
+    ip addr add ${PLUTO_MY_SOURCEIP4_1}/16 dev qlc peer 10.57.10.57/16
+    ip addr add ${PLUTO_MY_SOURCEIP6_1}/112 dev qlc peer 2600:3c01:e000:117:7fae:137:137f:faed/112
+    ip addr add fdd0:1057:da7a:7175::7175/64 dev qlc peer fdd0:1057:da7a:c045:e7ed:d011:7175:2a55/48
+    ip ro add ::/0 dev qlc src ${PLUTO_MY_SOURCEIP6_1} via fe80::1
+    ip ro add 0.0.0.0/0 dev qlc src ${PLUTO_MY_SOURCEIP4_1} via 10.57.10.57
+    #iptables -t nat -D POSTROUTING -d 45.33.50.191/32 -j MASQUERADE
+    #iptables -t nat -A POSTROUTING -d 45.33.50.191/32 -j MASQUERADE
+    sysctl -p /etc/sysctl-qlc.conf
+    iptables -t nat -I POSTROUTING -s 10.57.0.0/16 -o qlc -j MASQUERADE
+    ;;
+  down-client)
+    #iptables -t nat -D POSTROUTING -d 45.33.50.191/32 -j MASQUERADE
+    iptables -t nat -D POSTROUTING -s 10.57.0.0/16 -o qlc -j MASQUERADE
+    ip ro flush dev qlc
+    ip add flush dev qlc
+    ip tunnel del qlc
+    ;;
+esac

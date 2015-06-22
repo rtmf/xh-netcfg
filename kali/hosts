@@ -6,7 +6,8 @@
 127.0.0.1	localhost.localdomain	localhost
 ::1		localhost.localdomain	localhost
 
-45.33.50.191 edge.xh.tymestl.org
+45.33.50.191 rescue.edge
+192.168.0.1 wifigate
 
 74.207.252.217 fmt.lish
 #10.7.19.127	vpn.beautifulsunrise.org	vpn.bso		v.bso	v

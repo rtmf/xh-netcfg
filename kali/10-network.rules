@@ -1,0 +1,5 @@
+#ported from /etc/iftab
+KERNELS=="0000:07:00.0", SUBSYSTEMS=="pci", DRIVERS=="wl", NAME="kaliwifiblob"
+KERNELS=="0000:07:00.0", SUBSYSTEMS=="pci", DRIVERS=="b43-pci-bridge", NAME="kaliwififree"
+SUBSYSTEM=="net", ATTR{address}=="02:04:67:3d:65:32", NAME="krystaltether"
+SUBSYSTEM=="net", ATTR{address}=="00:26:b9:a5:3c:02", NAME="kalihardlink"

@@ -4,21 +4,29 @@
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
-2: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default 
-    link/ether 3e:40:3f:48:e9:6f brd ff:ff:ff:ff:ff:ff
-4: intwifi.wl0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+3: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN group default 
+    link/gre 0.0.0.0 brd 0.0.0.0
+4: gretap0@NONE: <BROADCAST,MULTICAST> mtu 1462 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+50: krystaltether: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+    link/ether 02:04:67:3d:65:32 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.42.127/24 brd 192.168.42.255 scope global krystaltether
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4:67ff:fe3d:6532/64 scope link 
+       valid_lft forever preferred_lft forever
+51: qlc@NONE: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1476 qdisc noqueue state UNKNOWN group default 
+    link/gre 192.168.42.127 peer 45.33.50.191
+    inet 10.57.71.75 peer 10.57.10.57/16 scope global qlc
+       valid_lft forever preferred_lft forever
+    inet6 fdd0:1057:da7a:7175::7175 peer fdd0:1057:da7a:c045:e7ed:d011:7175:2a55/48 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 2600:3c01:e000:117:7fae:137:137f:ac1d peer 2600:3c01:e000:117:7fae:137:137f:faed/112 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5efe:c0a8:2a7f/64 scope link 
+       valid_lft forever preferred_lft forever
+52: kaliwififree: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
     link/ether c4:17:fe:c7:20:a0 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.0.169/24 brd 192.168.0.255 scope global intwifi.wl0
+    inet 192.168.12.1/24 brd 192.168.12.255 scope global kaliwififree
        valid_lft forever preferred_lft forever
     inet6 fe80::c617:feff:fec7:20a0/64 scope link 
-       valid_lft forever preferred_lft forever
-5: dolly: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
-    link/ether 6a:30:65:22:b0:33 brd ff:ff:ff:ff:ff:ff
-    inet 10.34.71.75/32 scope global dolly
-       valid_lft forever preferred_lft forever
-    inet6 2600:3c01:e000:117:7fae:137:137f:ac1d/128 scope global deprecated 
-       valid_lft forever preferred_lft 0sec
-    inet6 fdd0:1057:da7a:7175::7175/64 scope global 
-       valid_lft forever preferred_lft forever
-    inet6 fe80::6830:65ff:fe22:b033/64 scope link 
        valid_lft forever preferred_lft forever
