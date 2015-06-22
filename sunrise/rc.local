@@ -19,7 +19,7 @@ ip -6 neigh flush dev eth0
 ifup --force --ignore-errors --no-mappings --no-scripts eth0
 iptables -t nat -F POSTROUTING
 ip6tables -t nat -F POSTROUTING
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+#iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 hostname beautifulsunrise.org
 domainname bso

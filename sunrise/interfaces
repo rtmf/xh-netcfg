@@ -6,6 +6,8 @@ auto eth0
 iface eth0 inet static
   address 173.255.209.40/24
   gateway 173.255.209.1
+iface eth0 inet static
+  address 10.57.84.83/32
 
 iface eth0 inet6 static
   address 2600:3c01::f03c:91ff:fe96:f34c/64

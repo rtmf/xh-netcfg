@@ -5,12 +5,12 @@
     inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
 2: dummy0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN group default 
-    link/ether aa:36:e7:b0:93:e4 brd ff:ff:ff:ff:ff:ff
+    link/ether 22:8b:14:a8:1d:7e brd ff:ff:ff:ff:ff:ff
 3: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
     link/ether f2:3c:91:96:f3:4c brd ff:ff:ff:ff:ff:ff
     inet 173.255.209.40/24 brd 173.255.209.255 scope global eth0
        valid_lft forever preferred_lft forever
-    inet 10.34.84.83/32 scope global eth0
+    inet 10.57.84.83/32 scope global eth0
        valid_lft forever preferred_lft forever
     inet6 2600:3c01:e000:117::666/64 scope global 
        valid_lft forever preferred_lft forever
