@@ -1,0 +1,54 @@
+#!/bin/sh
+( 
+ttl=300
+zone="qlc.xh"
+typ=NONE
+set | grep PLUTO
+echo $PLUTO_VERB @ $PLUTO_PEER_ID := $PLUTO_PEER_CLIENT
+case ${PLUTO_VERB} in
+  *client*)
+    case ${PLUTO_VERB} in
+      up-client*)
+        mode=add
+        ;;
+      down-client*)
+        mode=delete
+        ;;
+    esac
+    case ${PLUTO_PEER_CLIENT} in
+      */128)
+        typ=AAAA
+				dom=$(echo ${PLUTO_PEER_ID} | tr ", " "\n\n" | grep "^CN=" | cut -d '=' -f 2-)
+				dom=${dom:-${PLUTO_PEER_ID}}
+        addr=${PLUTO_PEER_CLIENT%/128}
+        rev=$(sipcalc -r $addr | grep arpa | tail -n 1)
+        ;;
+      */32)
+        typ=A
+				dom=$(echo ${PLUTO_PEER_ID} | tr ", " "\n\n" | grep "^CN=" | cut -d '=' -f 2- | sed -e 's/.qlc.xh$/.int.qlc.xh/')
+				dom=${dom:-$(echo ${PLUTO_PEER_ID} | sed -e 's/.qlc.xh$/.int.qlc.xh/')}
+        addr=${PLUTO_PEER_CLIENT%/32}
+        rev=$(echo $addr | awk -F . '{print $4"."$3"."$2"."$1".in-addr.arpa"}')
+        ;;
+    esac
+		echo $typ
+		echo $dom
+		echo $addr
+		echo $rev
+    if [ "$typ" != "NONE" ]
+    then
+      class=IN
+      echo REVERSE_DOMAIN:$rev
+			nsupdate -l -d -D -L 9 <<---NSUP--
+update ${mode} ${dom}. ${ttl} ${class} ${typ} ${addr}
+send
+update ${mode} ${rev} ${ttl} PTR ${dom}.
+show
+send
+answer
+--NSUP--
+    fi
+    pgrep rndc || rndc sync -clean
+    ;;
+esac 
+) &>> /tmp/updown/log

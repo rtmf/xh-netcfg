@@ -1,0 +1,40 @@
+#!/usr/bin/zsh
+ISD="/etc/ipsec.d"
+if [ "$1" = "-f" ] 
+then
+	rm /etc/ipsec.d/private/*.pem
+	shift
+fi
+FMTDN="C=XH, O=DOLLY, CN=%sqlc.xh"
+fmtdn() {
+	printf "$FMTDN" "${1:+${1}.}"
+}
+mkkey() {
+	ipsec pki --gen --size 4096 --outform pem > ${1}
+}
+CAFDN="$(fmtdn ca)"
+CACRT="${ISD}/cacerts/ca.qlc.xh.crt"
+CAKEY="${ISD}/private/ca.qlc.xh.key"
+[ -f $CAKEY ] || { 
+	rm -f ${ISD}/{cacerts,private,certs}/*
+	echo "Generating CA..."
+	echo $FDN
+	echo $CAKEY
+	echo $CACRT
+	mkkey $CAKEY
+	ipsec pki --self --in $CAKEY --dn $CAFDN --ca --san ca.qlc.xh --outform pem > $CACRT 
+}
+for TGT in "$@"
+do
+	FDN="$(fmtdn ${TGT})"
+	TGT="${TGT:+${TGT}.}"
+	CRT="${ISD}/certs/${TGT}qlc.xh.crt"
+	KEY="${ISD}/private/${TGT}qlc.xh.key"
+	echo "Generating host..."
+	echo $FDN
+	echo $KEY
+	echo $CRT
+	mkkey $KEY
+	ipsec pki --pub --in $KEY --outform pem | ipsec pki --issue --cacert $CACRT --cakey $CAKEY --dn $FDN --san ${TGT}qlc.xh --outform pem > $CRT
+done
+
